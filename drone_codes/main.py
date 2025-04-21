@@ -20,6 +20,7 @@ if __name__ == '__main__':
         elif is_pressed("-") and speed > 0:
             sleep(0.001)
             speed -= 1
+        isPressed(speed)
             
         drone.send_rc_control(control[0], control[1], control[2], control[3])
         img = show_img(speed)
