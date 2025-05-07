@@ -1,8 +1,7 @@
 from os import system
-from djitellopy import tello
-from time import sleep
 import cv2
 from keyboard import is_pressed
+from main import drone, control, faceCascade
 
 def connectTello(tellonum): #connects the drone automaticly
     ssid = "TELLO-" + tellonum
@@ -58,9 +57,5 @@ def show_img(speed):
 
 
 def camera():
-    if is_pressed("e"): drone.set_video_direction(drone.CAMERA_DOWNWARD)
-    elif is_pressed("q"): drone.set_video_direction(drone.CAMERA_FORWARD)
-
-drone = tello.Tello()
-control = [0, 0, 0, 0]
-faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    if is_pressed("1"): drone.set_video_direction(drone.CAMERA_FORWARD)
+    elif is_pressed("2"): drone.set_video_direction(drone.CAMERA_DOWNWARD)
