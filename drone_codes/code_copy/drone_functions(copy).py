@@ -1,8 +1,7 @@
 from os import system
-from djitellopy import tello
-from time import sleep
 import cv2
 from keyboard import is_pressed
+from main import drone, control, faceCascade
 
 def connectTello(tellonum): #connects the drone automaticly
     ssid = "TELLO-" + tellonum
@@ -37,8 +36,6 @@ def face_distance(faces, img):
 def show_img(speed):
     img = drone.get_frame_read().frame
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-
-    
     faces = faceCascade.detectMultiScale(img)
 
     cv2.putText(img, f"{drone.get_distance_tof()}CM", (50, 100), cv2.QT_FONT_NORMAL, 1, (70, 240, 255), 2)
@@ -55,12 +52,7 @@ def show_img(speed):
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2) #creats a rectangale arounf face-like things
     draw_speed(img, 10, 10, speed) #functon call-back
     return img
-
-
+    
 def camera():
-    if is_pressed("e"): drone.set_video_direction(drone.CAMERA_DOWNWARD)
-    elif is_pressed("q"): drone.set_video_direction(drone.CAMERA_FORWARD)
-
-drone = tello.Tello()
-control = [0, 0, 0, 0]
-faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    if is_pressed("1"): drone.set_video_direction(drone.CAMERA_FORWARD)
+    elif is_pressed("2"): drone.set_video_direction(drone.CAMERA_DOWNWARD)
