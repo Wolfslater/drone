@@ -31,7 +31,7 @@ if __name__ == '__main__':
         elif on == False:
             drone.streamoff()
 
-        
+        isPressed(speed)
 
         if is_pressed("+")and speed < 100:
             sleep(0.00001)
@@ -39,14 +39,6 @@ if __name__ == '__main__':
         elif is_pressed("-") and speed > 0:
             sleep(0.00001)
             speed -= 1
-        if is_pressed("a"): control[0] = -speed
-        elif is_pressed("d"): control[0] = speed
-        if is_pressed("s"): control[1] = -speed
-        elif is_pressed("w"): control[1] = speed
-        if is_pressed("k"): control[2] = -speed
-        elif is_pressed("i"): control[2] = speed
-        if is_pressed("j"): control[3] = -speed
-        elif is_pressed("l"): control[3] = speed
         
         drone.send_rc_control(control[0], control[1], control[2], control[3])
         if on:
